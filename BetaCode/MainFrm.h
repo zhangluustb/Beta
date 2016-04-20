@@ -8,6 +8,7 @@
 #if _MSC_VER > 1000
 #pragma once
 #endif // _MSC_VER > 1000
+#define UM_PROGRESS  WM_USER+1
 
 class CMainFrame : public CFrameWnd
 {
@@ -35,9 +36,10 @@ public:
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;
 #endif
-
-protected:  // control bar embedded members
+public:
 	CStatusBar  m_wndStatusBar;
+protected:  // control bar embedded members
+	
 	CToolBar    m_wndToolBar;
 	CToolBar	m_newToolBar;
 // Generated message map functions
@@ -48,10 +50,14 @@ protected:
 	afx_msg void OnTimer(UINT nIDEvent);
 	afx_msg void OnNewtoolbar();
 	afx_msg void OnUpdateNewtoolbar(CCmdUI* pCmdUI);
+	afx_msg void OnPaint();
 	//}}AFX_MSG
 	afx_msg void Hello();
+	afx_msg void OnProgress();
 	DECLARE_MESSAGE_MAP()
 	
+private:
+	CProgressCtrl m_progress;
 };
 
 /////////////////////////////////////////////////////////////////////////////

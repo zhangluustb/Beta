@@ -80,6 +80,7 @@ IDI_ICON3               ICON    DISCARDABLE     "res\\icon3.ico"
 
 IDR_MAINFRAME           BITMAP  MOVEABLE PURE   "res\\Toolbar.bmp"
 IDR_TOOLBAR1            BITMAP  DISCARDABLE     "res\\toolbar1.bmp"
+IDB_SPLASH              BITMAP  DISCARDABLE     "res\\bitmap1.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

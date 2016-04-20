@@ -5,7 +5,7 @@
 #include "BetaCode.h"
 
 #include "MainFrm.h"
-
+#include "SplashWnd.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -24,8 +24,10 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_WM_TIMER()
 	ON_COMMAND(IDM_NEWTOOLBAR, OnNewtoolbar)
 	ON_UPDATE_COMMAND_UI(IDM_NEWTOOLBAR, OnUpdateNewtoolbar)
+	ON_WM_PAINT()
 	//}}AFX_MSG_MAP
 	ON_COMMAND(IDM_HELLO,Hello)
+	ON_MESSAGE(UM_PROGRESS,OnProgress)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -124,7 +126,21 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	SetClassLong(m_hWnd,GCL_HICON,(LONG)m_hIcons[0]);
 	SetTimer(1,1000,NULL);
 
-	
+/*
+	CRect rect;
+	m_wndStatusBar.GetItemRect(2,&rect);
+	//m_progress.Create(WS_CHILD | WS_VISIBLE | PBS_VERTICAL,
+	//	CRect(100,100,120,200),this,123);
+	m_progress.Create(WS_CHILD | WS_VISIBLE,// | PBS_VERTICAL,
+		rect,&m_wndStatusBar,123);
+	m_progress.SetPos(50);
+	//SendMessage(UM_PROGRESS);
+	PostMessage(UM_PROGRESS);
+
+	*/
+
+	CSplashWnd::EnableSplashScreen(1);
+	CSplashWnd::ShowSplashScreen(this);
 	return 0;
 }
 
@@ -185,6 +201,7 @@ void CMainFrame::OnTimer(UINT nIDEvent)
 	m_wndStatusBar.SetPaneInfo(1,IDS_TIMER,SBPS_NORMAL,sz.cx);
 	m_wndStatusBar.SetPaneText(1,str);
 
+	m_progress.StepIt();
 	CFrameWnd::OnTimer(nIDEvent);
 }
 
@@ -207,4 +224,29 @@ void CMainFrame::OnUpdateNewtoolbar(CCmdUI* pCmdUI)
 {
 	// TODO: Add your command update UI handler code here
 	pCmdUI->SetCheck(m_newToolBar.IsWindowVisible());
+}
+
+void CMainFrame::OnProgress()
+{
+	CRect rect;
+	m_wndStatusBar.GetItemRect(2,&rect);
+	m_progress.Create(WS_CHILD | WS_VISIBLE | PBS_SMOOTH,
+	  rect,&m_wndStatusBar,123);
+	m_progress.SetPos(50);
+}
+
+void CMainFrame::OnPaint() 
+{
+	CPaintDC dc(this); // device context for painting
+	
+	// TODO: Add your message handler code here
+	CRect rect;
+	m_wndStatusBar.GetItemRect(2,&rect);
+	if(!m_progress.m_hWnd)
+		m_progress.Create(WS_CHILD | WS_VISIBLE ,//| PBS_SMOOTH,
+			rect,&m_wndStatusBar,123);
+	else
+		m_progress.MoveWindow(rect);
+	m_progress.SetPos(50);
+	// Do not call CFrameWnd::OnPaint() for painting messages
 }

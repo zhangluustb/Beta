@@ -6,13 +6,14 @@
 --------------------Configuration: BetaCode - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\Users\SYJ\AppData\Local\Temp\RSP16A7.tmp" with contents
+Creating temporary file "C:\Users\SYJ\AppData\Local\Temp\RSPD5AD.tmp" with contents
 [
-/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/BetaCode.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/BetaCode.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\Users\SYJ\Desktop\Projects\Beta\Beta\BetaCode\BetaCode.cpp"
 "C:\Users\SYJ\Desktop\Projects\Beta\Beta\BetaCode\MainFrm.cpp"
 ]
-Creating command line "cl.exe @C:\Users\SYJ\AppData\Local\Temp\RSP16A7.tmp" 
-Creating temporary file "C:\Users\SYJ\AppData\Local\Temp\RSP16A8.tmp" with contents
+Creating command line "cl.exe @C:\Users\SYJ\AppData\Local\Temp\RSPD5AD.tmp" 
+Creating temporary file "C:\Users\SYJ\AppData\Local\Temp\RSPD5AE.tmp" with contents
 [
 /nologo /subsystem:windows /incremental:yes /pdb:"Debug/BetaCode.pdb" /debug /machine:I386 /out:"Debug/BetaCode.exe" /pdbtype:sept 
 .\Debug\BetaCode.obj
@@ -21,12 +22,18 @@ Creating temporary file "C:\Users\SYJ\AppData\Local\Temp\RSP16A8.tmp" with conte
 .\Debug\MainFrm.obj
 .\Debug\StdAfx.obj
 .\Debug\BetaCode.res
+.\Debug\SplashWnd.obj
 ]
-Creating command line "link.exe @C:\Users\SYJ\AppData\Local\Temp\RSP16A8.tmp"
+Creating command line "link.exe @C:\Users\SYJ\AppData\Local\Temp\RSPD5AE.tmp"
 <h3>Output Window</h3>
 Compiling...
+BetaCode.cpp
 MainFrm.cpp
+Generating Code...
 Linking...
+Creating command line "bscmake.exe /nologo /o"Debug/BetaCode.bsc"  .\Debug\StdAfx.sbr .\Debug\BetaCode.sbr .\Debug\BetaCodeDoc.sbr .\Debug\BetaCodeView.sbr .\Debug\MainFrm.sbr .\Debug\SplashWnd.sbr"
+Creating browse info file...
+<h3>Output Window</h3>
 
 
 

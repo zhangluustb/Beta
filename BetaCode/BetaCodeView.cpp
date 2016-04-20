@@ -3,7 +3,7 @@
 
 #include "stdafx.h"
 #include "BetaCode.h"
-
+#include "MainFrm.h"
 #include "BetaCodeDoc.h"
 #include "BetaCodeView.h"
 
@@ -23,6 +23,7 @@ BEGIN_MESSAGE_MAP(CBetaCodeView, CView)
 	ON_WM_RBUTTONDOWN()
 	ON_WM_CHAR()
 	ON_WM_CREATE()
+	ON_WM_MOUSEMOVE()
 	//}}AFX_MSG_MAP
 	// Standard printing commands
 	ON_COMMAND(ID_FILE_PRINT, CView::OnFilePrint)
@@ -181,4 +182,17 @@ int CBetaCodeView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	SetClassLong(m_hWnd,GCL_HCURSOR,(LONG)LoadCursor(NULL,IDC_HELP));
 
 	return 0;
+}
+
+void CBetaCodeView::OnMouseMove(UINT nFlags, CPoint point) 
+{
+	// TODO: Add your message handler code here and/or call default
+	CString str;
+	str.Format("x=%d,y=%d",point.x,point.y);
+	((CMainFrame*)GetParent())->m_wndStatusBar.SetWindowText(str);
+	//((CMainFrame*)GetParent())->SetMessageText(str);
+	//((CMainFrame*)GetParent())->GetMessageBar()->SetWindowText(str);
+	//GetParent()->GetDescendantWindow(AFX_IDW_STATUS_BAR)->SetWindowText(str);
+
+	CView::OnMouseMove(nFlags, point);
 }

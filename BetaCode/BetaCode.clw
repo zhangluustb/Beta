@@ -2,13 +2,13 @@
 
 [General Info]
 Version=1
-LastClass=CMainFrame
-LastTemplate=CDialog
+LastClass=CSplashWnd
+LastTemplate=CView
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "BetaCode.h"
 LastPage=0
 
-ClassCount=5
+ClassCount=6
 Class1=CBetaCodeApp
 Class2=CBetaCodeDoc
 Class3=CBetaCodeView
@@ -19,6 +19,7 @@ Resource1=IDR_MENU1
 Class5=CAboutDlg
 Resource2=IDR_TOOLBAR1
 Resource3=IDR_MAINFRAME
+Class6=CSplashWnd
 Resource4=IDD_ABOUTBOX
 
 [CLS:CBetaCodeApp]
@@ -49,7 +50,7 @@ ImplementationFile=MainFrm.cpp
 Filter=T
 BaseClass=CFrameWnd
 VirtualFilter=fWC
-LastObject=IDM_NEWTOOLBAR
+LastObject=CMainFrame
 
 
 
@@ -146,4 +147,12 @@ Command1=IDT_0
 Command2=IDT_2
 Command3=IDT_2
 CommandCount=3
+
+[CLS:CSplashWnd]
+Type=0
+HeaderFile=SplashWnd.h
+ImplementationFile=SplashWnd.cpp
+BaseClass=CView
+Filter=C
+LastObject=CSplashWnd
 
