@@ -18,7 +18,7 @@ protected: // create from serialization only
 
 // Attributes
 public:
-
+	HICON m_hIcons[3];
 // Operations
 public:
 
@@ -39,15 +39,19 @@ public:
 protected:  // control bar embedded members
 	CStatusBar  m_wndStatusBar;
 	CToolBar    m_wndToolBar;
-
+	CToolBar	m_newToolBar;
 // Generated message map functions
 protected:
 	//{{AFX_MSG(CMainFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnUpdateEditCut(CCmdUI* pCmdUI);
+	afx_msg void OnTimer(UINT nIDEvent);
+	afx_msg void OnNewtoolbar();
+	afx_msg void OnUpdateNewtoolbar(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	afx_msg void Hello();
 	DECLARE_MESSAGE_MAP()
+	
 };
 
 /////////////////////////////////////////////////////////////////////////////

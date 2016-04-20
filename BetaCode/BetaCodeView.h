@@ -54,6 +54,7 @@ protected:
 	//{{AFX_MSG(CBetaCodeView)
 	afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
+	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	//}}AFX_MSG
 	afx_msg void OnPhone1();
 	afx_msg void OnPhone2();

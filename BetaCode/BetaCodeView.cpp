@@ -22,6 +22,7 @@ BEGIN_MESSAGE_MAP(CBetaCodeView, CView)
 	//{{AFX_MSG_MAP(CBetaCodeView)
 	ON_WM_RBUTTONDOWN()
 	ON_WM_CHAR()
+	ON_WM_CREATE()
 	//}}AFX_MSG_MAP
 	// Standard printing commands
 	ON_COMMAND(ID_FILE_PRINT, CView::OnFilePrint)
@@ -51,6 +52,9 @@ BOOL CBetaCodeView::PreCreateWindow(CREATESTRUCT& cs)
 {
 	// TODO: Modify the Window class or styles here by modifying
 	//  the CREATESTRUCT cs
+	//cs.lpszClass=AfxRegisterWndClass(CS_HREDRAW | CS_VREDRAW,
+	// LoadCursor(NULL,IDC_CROSS),(HBRUSH)GetStockObject(BLACK_BRUSH),NULL);
+	cs.lpszClass=AfxRegisterWndClass(CS_HREDRAW | CS_VREDRAW);
 
 	return CView::PreCreateWindow(cs);
 }
@@ -165,4 +169,16 @@ void CBetaCodeView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 		dc.TextOut(0,0,m_strLine);
 	}
 	CView::OnChar(nChar, nRepCnt, nFlags);
+}
+
+int CBetaCodeView::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+{
+	if (CView::OnCreate(lpCreateStruct) == -1)
+		return -1;
+	
+	// TODO: Add your specialized creation code here
+	SetClassLong(m_hWnd,GCL_HBRBACKGROUND,(LONG)GetStockObject(WHITE_BRUSH));
+	SetClassLong(m_hWnd,GCL_HCURSOR,(LONG)LoadCursor(NULL,IDC_HELP));
+
+	return 0;
 }

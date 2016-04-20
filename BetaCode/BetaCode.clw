@@ -14,11 +14,12 @@ Class2=CBetaCodeDoc
 Class3=CBetaCodeView
 Class4=CMainFrame
 
-ResourceCount=3
+ResourceCount=4
 Resource1=IDR_MENU1
 Class5=CAboutDlg
-Resource2=IDR_MAINFRAME
-Resource3=IDD_ABOUTBOX
+Resource2=IDR_TOOLBAR1
+Resource3=IDR_MAINFRAME
+Resource4=IDD_ABOUTBOX
 
 [CLS:CBetaCodeApp]
 Type=0
@@ -48,6 +49,7 @@ ImplementationFile=MainFrm.cpp
 Filter=T
 BaseClass=CFrameWnd
 VirtualFilter=fWC
+LastObject=IDM_NEWTOOLBAR
 
 
 
@@ -86,8 +88,9 @@ Command12=ID_EDIT_COPY
 Command13=ID_EDIT_PASTE
 Command14=ID_VIEW_TOOLBAR
 Command15=ID_VIEW_STATUS_BAR
-Command16=ID_APP_ABOUT
-CommandCount=16
+Command16=IDM_NEWTOOLBAR
+Command17=ID_APP_ABOUT
+CommandCount=17
 
 [ACL:IDR_MAINFRAME]
 Type=1
@@ -135,4 +138,12 @@ Command8=ID_MENUITEM32778
 Command9=ID_MENUITEM32779
 Command10=ID_MENUITEM32780
 CommandCount=10
+
+[TB:IDR_TOOLBAR1]
+Type=1
+Class=?
+Command1=IDT_0
+Command2=IDT_2
+Command3=IDT_2
+CommandCount=3
 

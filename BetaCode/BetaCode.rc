@@ -69,6 +69,9 @@ END
 // remains consistent on all systems.
 IDR_MAINFRAME           ICON    DISCARDABLE     "res\\BetaCode.ico"
 IDR_BETACOTYPE          ICON    DISCARDABLE     "res\\BetaCodeDoc.ico"
+IDI_ICON1               ICON    DISCARDABLE     "res\\icon1.ico"
+IDI_ICON2               ICON    DISCARDABLE     "res\\icon2.ico"
+IDI_ICON3               ICON    DISCARDABLE     "res\\icon3.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -76,6 +79,7 @@ IDR_BETACOTYPE          ICON    DISCARDABLE     "res\\BetaCodeDoc.ico"
 //
 
 IDR_MAINFRAME           BITMAP  MOVEABLE PURE   "res\\Toolbar.bmp"
+IDR_TOOLBAR1            BITMAP  DISCARDABLE     "res\\toolbar1.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -95,6 +99,13 @@ BEGIN
     BUTTON      ID_FILE_PRINT
     SEPARATOR
     BUTTON      ID_APP_ABOUT
+END
+
+IDR_TOOLBAR1 TOOLBAR DISCARDABLE  16, 15
+BEGIN
+    BUTTON      IDT_0
+    BUTTON      IDT_2
+    BUTTON      IDT_2
 END
 
 
@@ -132,6 +143,7 @@ BEGIN
     BEGIN
         MENUITEM "工具栏(&T)",                  ID_VIEW_TOOLBAR
         MENUITEM "状态栏(&S)",                  ID_VIEW_STATUS_BAR
+        MENUITEM "新的工具栏",                  IDM_NEWTOOLBAR
     END
     POPUP "帮助(&H)"
     BEGIN
@@ -384,6 +396,8 @@ END
 STRINGTABLE DISCARDABLE 
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "关闭打印预览模式\n取消预阅"
+    IDS_TIMER               "时钟"
+    IDS_PROGRESS            "进度栏"
 END
 
 #endif    // Chinese (中国) resources
