@@ -11,6 +11,7 @@
 // CSettingDlg dialog
 #include "TestBtn.h"
 #include "SXBtn.h"
+#include "ButtonST.h"
 class CSettingDlg : public CDialog
 {
 // Construction
@@ -20,6 +21,7 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CSettingDlg)
 	enum { IDD = IDD_DLG_SETTING };
+	CButtonST	m_btnst;
 	CSXBtn	m_btnCancel;
 	CTestBtn	m_btnTest;
 	UINT	m_nLineWidth;
@@ -47,6 +49,7 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg void OnChangeLineWidth();
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+	virtual BOOL OnInitDialog();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

@@ -59,6 +59,7 @@ protected:
 	afx_msg void OnMenuitemset();
 	afx_msg void OnMenuitemfont();
 	afx_msg void OnMenuitemcolor();
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:

@@ -6,6 +6,7 @@
 #define IDR_MAINFRAME                   128
 #define IDR_DRAWPITYPE                  129
 #define IDD_DLG_SETTING                 130
+#define IDB_BITMAP1                     131
 #define IDC_LINE_WIDTH                  1000
 #define IDC_RADIO1                      1001
 #define IDC_RADIO2                      1002
@@ -27,7 +28,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        131
+#define _APS_NEXT_RESOURCE_VALUE        132
 #define _APS_NEXT_COMMAND_VALUE         32778
 #define _APS_NEXT_CONTROL_VALUE         1012
 #define _APS_NEXT_SYMED_VALUE           101

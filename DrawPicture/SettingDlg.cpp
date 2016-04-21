@@ -32,6 +32,7 @@ void CSettingDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CSettingDlg)
+	DDX_Control(pDX, IDC_BTNST, m_btnst);
 	DDX_Control(pDX, IDCANCEL, m_btnCancel);
 	DDX_Control(pDX, IDOK, m_btnTest);
 	DDX_Text(pDX, IDC_LINE_WIDTH, m_nLineWidth);
@@ -130,4 +131,18 @@ HBRUSH CSettingDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	}
 	// TODO: Return a different brush if the default is not desired
 	return hbr;
+}
+
+BOOL CSettingDlg::OnInitDialog() 
+{
+	CDialog::OnInitDialog();
+	
+	// TODO: Add extra initialization here
+	m_btnst.SetActiveBgColor(RGB(0,0,255));
+	m_btnst.SetActiveFgColor(RGB(255,0,0));
+
+	m_btnst.SetInactiveBgColor(RGB(255,0,255));
+	m_btnst.SetInactiveFgColor(RGB(255,255,0));
+	return TRUE;  // return TRUE unless you set the focus to a control
+	              // EXCEPTION: OCX Property Pages should return FALSE
 }
