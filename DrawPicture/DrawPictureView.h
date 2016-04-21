@@ -48,10 +48,29 @@ protected:
 // Generated message map functions
 protected:
 	//{{AFX_MSG(CDrawPictureView)
-		// NOTE - the ClassWizard will add and remove member functions here.
-		//    DO NOT EDIT what you see in these blocks of generated code !
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnUpdateDot(CCmdUI* pCmdUI);
+	afx_msg void OnDot();
+	afx_msg void OnLine();
+	afx_msg void OnRect();
+	afx_msg void OnEll();
+	afx_msg void OnMenuitemset();
+	afx_msg void OnMenuitemfont();
+	afx_msg void OnMenuitemcolor();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+private:
+	CFont m_font;
+	CString m_strFontName;
+	COLORREF m_clr;
+	int m_DrawType;
+	CPoint m_ptOrigin;
+	BOOL m_bDraw;
+	CPoint m_ptOld;
+	int m_nLineStyle;
+	UINT m_nLineWidth;
 };
 
 #ifndef _DEBUG  // debug version in DrawPictureView.cpp
