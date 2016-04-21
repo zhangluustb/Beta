@@ -6,6 +6,7 @@
 
 #include "MainFrm.h"
 #include "SplashWnd.h"
+#include "TestDlg.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -25,6 +26,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_COMMAND(IDM_NEWTOOLBAR, OnNewtoolbar)
 	ON_UPDATE_COMMAND_UI(IDM_NEWTOOLBAR, OnUpdateNewtoolbar)
 	ON_WM_PAINT()
+	ON_COMMAND(IDM_DLG1, OnDlg1)
 	//}}AFX_MSG_MAP
 	ON_COMMAND(IDM_HELLO,Hello)
 	ON_MESSAGE(UM_PROGRESS,OnProgress)
@@ -249,4 +251,11 @@ void CMainFrame::OnPaint()
 		m_progress.MoveWindow(rect);
 	m_progress.SetPos(50);
 	// Do not call CFrameWnd::OnPaint() for painting messages
+}
+
+void CMainFrame::OnDlg1() 
+{
+	// TODO: Add your command handler code here
+	CTestDlg dlg;
+	dlg.DoModal();
 }

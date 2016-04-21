@@ -51,6 +51,7 @@ protected:
 	afx_msg void OnNewtoolbar();
 	afx_msg void OnUpdateNewtoolbar(CCmdUI* pCmdUI);
 	afx_msg void OnPaint();
+	afx_msg void OnDlg1();
 	//}}AFX_MSG
 	afx_msg void Hello();
 	afx_msg void OnProgress();

@@ -2,25 +2,27 @@
 
 [General Info]
 Version=1
-LastClass=CSplashWnd
-LastTemplate=CView
+LastClass=CTestDlg
+LastTemplate=CDialog
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "BetaCode.h"
 LastPage=0
 
-ClassCount=6
+ClassCount=7
 Class1=CBetaCodeApp
 Class2=CBetaCodeDoc
 Class3=CBetaCodeView
 Class4=CMainFrame
 
-ResourceCount=4
+ResourceCount=5
 Resource1=IDR_MENU1
 Class5=CAboutDlg
 Resource2=IDR_TOOLBAR1
-Resource3=IDR_MAINFRAME
+Resource3=IDD_ABOUTBOX
 Class6=CSplashWnd
-Resource4=IDD_ABOUTBOX
+Resource4=IDR_MAINFRAME
+Class7=CTestDlg
+Resource5=IDD_DIALOG1
 
 [CLS:CBetaCodeApp]
 Type=0
@@ -91,7 +93,9 @@ Command14=ID_VIEW_TOOLBAR
 Command15=ID_VIEW_STATUS_BAR
 Command16=IDM_NEWTOOLBAR
 Command17=ID_APP_ABOUT
-CommandCount=17
+Command18=IDM_DLG1
+Command19=IDM_DLG2
+CommandCount=19
 
 [ACL:IDR_MAINFRAME]
 Type=1
@@ -155,4 +159,29 @@ ImplementationFile=SplashWnd.cpp
 BaseClass=CView
 Filter=C
 LastObject=CSplashWnd
+
+[DLG:IDD_DIALOG1]
+Type=1
+Class=CTestDlg
+ControlCount=11
+Control1=IDOK,button,1342242817
+Control2=IDCANCEL,button,1342242816
+Control3=IDC_BTN_ADD,button,1342242816
+Control4=IDC_BUTTON2,button,1342242816
+Control5=IDC_STATIC2,static,1342308608
+Control6=IDC_STATIC1,static,1342308608
+Control7=IDC_STATIC3,static,1342308608
+Control8=IDC_EDIT1,edit,1350631552
+Control9=IDC_EDIT2,edit,1350631552
+Control10=IDC_EDIT3,edit,1350631552
+Control11=IDC_SEPARATOR,static,1342177287
+
+[CLS:CTestDlg]
+Type=0
+HeaderFile=TestDlg.h
+ImplementationFile=TestDlg.cpp
+BaseClass=CDialog
+Filter=D
+LastObject=IDC_STATIC1
+VirtualFilter=dWC
 
