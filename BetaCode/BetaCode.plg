@@ -6,43 +6,31 @@
 --------------------Configuration: BetaCode - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating command line "rc.exe /l 0x804 /fo"Debug/BetaCode.res" /d "_DEBUG" /d "_AFXDLL" "C:\Users\SYJ\Desktop\Projects\Beta\Beta\BetaCode\BetaCode.rc"" 
-Creating temporary file "C:\Users\SYJ\AppData\Local\Temp\RSP2F1E.tmp" with contents
+Creating temporary file "C:\Users\SYJ\AppData\Local\Temp\RSPC965.tmp" with contents
 [
 /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/BetaCode.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
-"C:\Users\SYJ\Desktop\Projects\Beta\Beta\BetaCode\MainFrm.cpp"
-"C:\Users\SYJ\Desktop\Projects\Beta\Beta\BetaCode\TestDlg.cpp"
+"C:\Users\SYJ\Desktop\Projects\Beta\Beta\BetaCode\TestDlg2.cpp"
 ]
-Creating command line "cl.exe @C:\Users\SYJ\AppData\Local\Temp\RSP2F1E.tmp" 
-Creating temporary file "C:\Users\SYJ\AppData\Local\Temp\RSP2F1F.tmp" with contents
-[
-/nologo /subsystem:windows /incremental:yes /pdb:"Debug/BetaCode.pdb" /debug /machine:I386 /out:"Debug/BetaCode.exe" /pdbtype:sept 
-.\Debug\BetaCode.obj
-.\Debug\BetaCodeDoc.obj
-.\Debug\BetaCodeView.obj
-.\Debug\MainFrm.obj
-.\Debug\SplashWnd.obj
-.\Debug\StdAfx.obj
-.\Debug\BetaCode.res
-.\Debug\TestDlg.obj
-]
-Creating command line "link.exe @C:\Users\SYJ\AppData\Local\Temp\RSP2F1F.tmp"
+Creating command line "cl.exe @C:\Users\SYJ\AppData\Local\Temp\RSPC965.tmp" 
 <h3>Output Window</h3>
-Compiling resources...
 Compiling...
-TestDlg.cpp
-Generating Code...
-Skipping... (no relevant changes detected)
-MainFrm.cpp
-Linking...
-Creating command line "bscmake.exe /nologo /o"Debug/BetaCode.bsc"  .\Debug\StdAfx.sbr .\Debug\BetaCode.sbr .\Debug\BetaCodeDoc.sbr .\Debug\BetaCodeView.sbr .\Debug\MainFrm.sbr .\Debug\SplashWnd.sbr .\Debug\TestDlg.sbr"
-Creating browse info file...
-<h3>Output Window</h3>
+TestDlg2.cpp
+c:\users\syj\desktop\projects\beta\beta\betacode\testdlg2.h(25) : error C2146: syntax error : missing ';' before identifier 'm_btn11'
+c:\users\syj\desktop\projects\beta\beta\betacode\testdlg2.h(25) : error C2501: 'CWinXinBtn' : missing storage-class or type specifiers
+c:\users\syj\desktop\projects\beta\beta\betacode\testdlg2.h(25) : error C2501: 'm_btn11' : missing storage-class or type specifiers
+c:\users\syj\desktop\projects\beta\beta\betacode\testdlg2.h(26) : error C2146: syntax error : missing ';' before identifier 'm_btn22'
+c:\users\syj\desktop\projects\beta\beta\betacode\testdlg2.h(26) : error C2501: 'CWinXinBtn' : missing storage-class or type specifiers
+c:\users\syj\desktop\projects\beta\beta\betacode\testdlg2.h(26) : error C2501: 'm_btn22' : missing storage-class or type specifiers
+C:\Users\SYJ\Desktop\Projects\Beta\Beta\BetaCode\TestDlg2.cpp(50) : error C2065: 'm_btn1' : undeclared identifier
+C:\Users\SYJ\Desktop\Projects\Beta\Beta\BetaCode\TestDlg2.cpp(50) : error C2228: left of '.m_pBtn' must have class/struct/union type
+C:\Users\SYJ\Desktop\Projects\Beta\Beta\BetaCode\TestDlg2.cpp(50) : error C2065: 'm_btn2' : undeclared identifier
+C:\Users\SYJ\Desktop\Projects\Beta\Beta\BetaCode\TestDlg2.cpp(51) : error C2228: left of '.m_pBtn' must have class/struct/union type
+Ö´ÐÐ cl.exe Ê±³ö´í.
 
 
 
 <h3>Results</h3>
-BetaCode.exe - 0 error(s), 0 warning(s)
+TestDlg2.obj - 1 error(s), 0 warning(s)
 </pre>
 </body>
 </html>

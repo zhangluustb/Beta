@@ -7,6 +7,7 @@
 #include "MainFrm.h"
 #include "SplashWnd.h"
 #include "TestDlg.h"
+#include "TestDlg2.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -27,6 +28,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_UPDATE_COMMAND_UI(IDM_NEWTOOLBAR, OnUpdateNewtoolbar)
 	ON_WM_PAINT()
 	ON_COMMAND(IDM_DLG1, OnDlg1)
+	ON_COMMAND(IDM_DLG2, OnDlg2)
 	//}}AFX_MSG_MAP
 	ON_COMMAND(IDM_HELLO,Hello)
 	ON_MESSAGE(UM_PROGRESS,OnProgress)
@@ -257,5 +259,12 @@ void CMainFrame::OnDlg1()
 {
 	// TODO: Add your command handler code here
 	CTestDlg dlg;
+	dlg.DoModal();
+}
+
+void CMainFrame::OnDlg2() 
+{
+	// TODO: Add your command handler code here
+	CTestDlg2 dlg;
 	dlg.DoModal();
 }

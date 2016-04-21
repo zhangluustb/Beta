@@ -121,6 +121,14 @@ SOURCE=.\StdAfx.cpp
 
 SOURCE=.\TestDlg.cpp
 # End Source File
+# Begin Source File
+
+SOURCE=.\TestDlg2.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\WinXinBtn.cpp
+# End Source File
 # End Group
 # Begin Group "Header Files"
 
@@ -156,6 +164,14 @@ SOURCE=.\StdAfx.h
 # Begin Source File
 
 SOURCE=.\TestDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TestDlg2.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\WinXinBtn.h
 # End Source File
 # End Group
 # Begin Group "Resource Files"

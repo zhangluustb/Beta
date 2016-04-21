@@ -2,19 +2,19 @@
 
 [General Info]
 Version=1
-LastClass=CTestDlg
-LastTemplate=CDialog
+LastClass=CTestDlg2
+LastTemplate=CButton
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "BetaCode.h"
 LastPage=0
 
-ClassCount=7
+ClassCount=9
 Class1=CBetaCodeApp
 Class2=CBetaCodeDoc
 Class3=CBetaCodeView
 Class4=CMainFrame
 
-ResourceCount=5
+ResourceCount=6
 Resource1=IDR_MENU1
 Class5=CAboutDlg
 Resource2=IDR_TOOLBAR1
@@ -23,6 +23,9 @@ Class6=CSplashWnd
 Resource4=IDR_MAINFRAME
 Class7=CTestDlg
 Resource5=IDD_DIALOG1
+Class8=CTestDlg2
+Class9=CWinXinBtn
+Resource6=IDD_DIALOG2
 
 [CLS:CBetaCodeApp]
 Type=0
@@ -182,6 +185,31 @@ HeaderFile=TestDlg.h
 ImplementationFile=TestDlg.cpp
 BaseClass=CDialog
 Filter=D
-LastObject=IDC_STATIC1
+LastObject=IDC_EDIT1
 VirtualFilter=dWC
+
+[DLG:IDD_DIALOG2]
+Type=1
+Class=CTestDlg2
+ControlCount=2
+Control1=IDC_BUTTON1,button,1342242816
+Control2=IDC_BUTTON2,button,1342242816
+
+[CLS:CTestDlg2]
+Type=0
+HeaderFile=TestDlg2.h
+ImplementationFile=TestDlg2.cpp
+BaseClass=CDialog
+Filter=D
+LastObject=IDC_BUTTON1
+VirtualFilter=dWC
+
+[CLS:CWinXinBtn]
+Type=0
+HeaderFile=WinXinBtn.h
+ImplementationFile=WinXinBtn.cpp
+BaseClass=CButton
+Filter=W
+LastObject=CWinXinBtn
+VirtualFilter=BWC
 

@@ -14,6 +14,7 @@
 #define IDR_TOOLBAR1                    134
 #define IDB_SPLASH                      136
 #define IDD_DIALOG1                     137
+#define IDD_DIALOG2                     138
 #define IDM_HELLO                       140
 #define IDM_PHONE1                      150
 #define IDM_PHONE2                      151
@@ -26,6 +27,7 @@
 #define IDC_STATIC1                     1004
 #define IDC_STATIC2                     1005
 #define IDC_STATIC3                     1006
+#define IDC_BUTTON1                     1007
 #define ID_MENUITEM32771                32771
 #define ID_MENUITEM32772                32772
 #define ID_MENUITEM32773                32773
@@ -49,9 +51,9 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        138
+#define _APS_NEXT_RESOURCE_VALUE        139
 #define _APS_NEXT_COMMAND_VALUE         32787
-#define _APS_NEXT_CONTROL_VALUE         1007
+#define _APS_NEXT_CONTROL_VALUE         1008
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
