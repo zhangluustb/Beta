@@ -155,6 +155,7 @@ BEGIN
         MENUITEM "对话框1",                     IDM_DLG1
         MENUITEM "对话框2",                     IDM_DLG2
     END
+    MENUITEM "属性表单",                    IDD_DATASHEET
 END
 
 IDR_MENU1 MENU DISCARDABLE 
@@ -249,6 +250,49 @@ BEGIN
     PUSHBUTTON      "Button1",IDC_BUTTON2,169,76,74,17
 END
 
+IDD_PROP1 DIALOG DISCARDABLE  0, 0, 304, 161
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Page1"
+FONT 10, "System"
+BEGIN
+    GROUPBOX        "职业",IDC_STATIC,27,22,128,107
+    LISTBOX         IDC_LIST1,164,27,122,103,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "程序员",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,59,47,68,15
+    CONTROL         "系统工程师",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,59,
+                    68,76,15
+    CONTROL         "项目经理",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,59,89,
+                    73,15
+    LTEXT           "工作地点",IDC_STATIC,165,14,70,12
+END
+
+IDD_PROP2 DIALOG DISCARDABLE  0, 0, 304, 161
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "属性2"
+FONT 10, "System"
+BEGIN
+    GROUPBOX        "爱好",IDC_STATIC,27,22,237,107
+    CONTROL         "足球",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    51,46,99,22
+    CONTROL         "游泳",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    168,82,99,22
+    CONTROL         "篮球",IDC_CHECK3,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    51,82,99,22
+    CONTROL         "排球",IDC_CHECK4,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    168,46,99,22
+END
+
+IDD_PROP3 DIALOG DISCARDABLE  0, 0, 304, 161
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "属性3"
+FONT 10, "System"
+BEGIN
+    COMBOBOX        IDC_COMBO1,40,40,211,97,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "薪资",IDC_STATIC,41,18,131,16
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -323,6 +367,30 @@ BEGIN
         RIGHTMARGIN, 254
         TOPMARGIN, 7
         BOTTOMMARGIN, 131
+    END
+
+    IDD_PROP1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 297
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 154
+    END
+
+    IDD_PROP2, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 297
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 154
+    END
+
+    IDD_PROP3, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 297
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 154
     END
 END
 #endif    // APSTUDIO_INVOKED

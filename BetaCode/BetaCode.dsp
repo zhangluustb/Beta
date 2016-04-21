@@ -110,6 +110,22 @@ SOURCE=.\MainFrm.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\Prop11.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\Prop21.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\Prop31.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\PropSheet1.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\SplashWnd.cpp
 # End Source File
 # Begin Source File
@@ -148,6 +164,22 @@ SOURCE=.\BetaCodeView.h
 # Begin Source File
 
 SOURCE=.\MainFrm.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Prop11.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Prop21.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Prop31.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\PropSheet1.h
 # End Source File
 # Begin Source File
 

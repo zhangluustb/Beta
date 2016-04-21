@@ -47,8 +47,8 @@ BOOL CTestDlg2::OnInitDialog()
 	CDialog::OnInitDialog();
 	
 	// TODO: Add extra initialization here
-	m_btn1.m_pBtn=&m_btn2;
-	m_btn2.m_pBtn=&m_btn1;
+	//m_btn1.m_pBtn=&m_btn2;
+	//m_btn2.m_pBtn=&m_btn1;
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }

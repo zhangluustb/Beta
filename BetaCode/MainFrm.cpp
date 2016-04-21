@@ -8,6 +8,8 @@
 #include "SplashWnd.h"
 #include "TestDlg.h"
 #include "TestDlg2.h"
+#include "PropSheet1.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -29,6 +31,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_WM_PAINT()
 	ON_COMMAND(IDM_DLG1, OnDlg1)
 	ON_COMMAND(IDM_DLG2, OnDlg2)
+	ON_COMMAND(IDD_DATASHEET, OnDatasheet)
 	//}}AFX_MSG_MAP
 	ON_COMMAND(IDM_HELLO,Hello)
 	ON_MESSAGE(UM_PROGRESS,OnProgress)
@@ -49,7 +52,10 @@ static UINT indicators[] =
 CMainFrame::CMainFrame()
 {
 	// TODO: add member initialization code here
-	
+	m_iOccupation=-1;
+	m_strWorkAddr="";
+	memset(m_bLike,0,sizeof(m_bLike));
+	m_strSalary="";
 }
 
 CMainFrame::~CMainFrame()
@@ -252,6 +258,67 @@ void CMainFrame::OnPaint()
 	else
 		m_progress.MoveWindow(rect);
 	m_progress.SetPos(50);
+
+
+	//告诫，文字输出最好在view中实现
+	CClientDC pdc(this);
+	CFont font;
+	font.CreatePointFont(300,"华文行楷");
+
+	CFont *pOldFont;
+	pOldFont=pdc.SelectObject(&font);
+
+	CString strTemp;
+	strTemp="你的职业：";
+
+	switch(m_iOccupation)
+	{
+	case 0:
+		strTemp+="程序员";
+		break;
+	case 1:
+		strTemp+="系统工程师";
+		break;
+	case 2:
+		strTemp+="项目经理";
+		break;
+	default:
+		break;
+	}
+	pdc.TextOut(0,30,strTemp);
+
+	strTemp="你的工作地点：";
+	strTemp+=m_strWorkAddr;
+
+	TEXTMETRIC tm;
+	pdc.GetTextMetrics(&tm);
+
+	pdc.TextOut(0,tm.tmHeight+30,strTemp);
+
+	strTemp="你的兴趣爱好：";
+	if(m_bLike[0])
+	{
+		strTemp+="足球 ";
+	}
+	if(m_bLike[1])
+	{
+		strTemp+="篮球 ";
+	}
+	if(m_bLike[2])
+	{
+		strTemp+="排球 ";
+	}
+	if(m_bLike[3])
+	{
+		strTemp+="游泳 ";
+	}
+	pdc.TextOut(0,tm.tmHeight*2+30,strTemp);
+
+	strTemp="你的薪资水平：";
+	strTemp+=m_strSalary;
+	pdc.TextOut(0,tm.tmHeight*3+30,strTemp);
+
+	pdc.SelectObject(pOldFont);
 	// Do not call CFrameWnd::OnPaint() for painting messages
 }
 
@@ -267,4 +334,22 @@ void CMainFrame::OnDlg2()
 	// TODO: Add your command handler code here
 	CTestDlg2 dlg;
 	dlg.DoModal();
+}
+
+void CMainFrame::OnDatasheet() 
+{
+	// TODO: Add your command handler code here
+	CPropSheet propSheet("维新属性表单程序"); 
+	propSheet.SetWizardMode();
+	if(ID_WIZFINISH==propSheet.DoModal())
+	{
+		m_iOccupation=propSheet.m_prop1.m_occupation;
+		m_strWorkAddr=propSheet.m_prop1.m_workAddr;
+		m_bLike[0]=propSheet.m_prop2.m_football;
+		m_bLike[1]=propSheet.m_prop2.m_bball;
+		m_bLike[2]=propSheet.m_prop2.m_vball;
+		m_bLike[3]=propSheet.m_prop2.m_swim;
+		m_strSalary=propSheet.m_prop3.m_salary;
+		Invalidate();
+	}
 }

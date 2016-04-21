@@ -22,8 +22,8 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CTestDlg2)
 	enum { IDD = IDD_DIALOG2 };
-	CWinXinBtn m_btn1;
-	CWinXinBtn m_btn2;
+	//CWinXinBtn m_btn1;
+	//CWinXinBtn m_btn2;
 	//}}AFX_DATA
 
 // Overrides
