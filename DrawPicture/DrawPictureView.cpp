@@ -32,6 +32,9 @@ BEGIN_MESSAGE_MAP(CDrawPictureView, CView)
 	ON_COMMAND(ID_MENUITEMFONT, OnMenuitemfont)
 	ON_COMMAND(ID_MENUITEMCOLOR, OnMenuitemcolor)
 	ON_WM_ERASEBKGND()
+	ON_WM_PAINT()
+	ON_COMMAND(ID_FILE_OPEN, OnFileOpen)
+	ON_COMMAND(ID_FILE_SAVE, OnFileSave)
 	//}}AFX_MSG_MAP
 	// Standard printing commands
 	ON_COMMAND(ID_FILE_PRINT, CView::OnFilePrint)
@@ -53,6 +56,7 @@ CDrawPictureView::CDrawPictureView()
 	m_nLineStyle=0;
 	m_clr=RGB(255,0,0);
 	m_strFontName="";
+	m_dcMetaFile.Create();
 }
 
 CDrawPictureView::~CDrawPictureView()
@@ -78,6 +82,18 @@ void CDrawPictureView::OnDraw(CDC* pDC)
 	CFont *pOldFont=pDC->SelectObject(&m_font);
 	pDC->TextOut(0,0,m_strFontName);
 	pDC->SelectObject(pOldFont);
+
+	//±£´æÍ¼Ïñ
+	/*CRect rect;
+	ClientToScreen(&rect);
+	pDC->BitBlt(0,0,rect.Width(),rect.Height(),&m_dcCompatible,0,0,SRCCOPY);*/
+	
+	HMETAFILE hmetaFile;
+	hmetaFile=m_dcMetaFile.Close();
+	pDC->PlayMetaFile(hmetaFile);
+	m_dcMetaFile.Create();
+	m_dcMetaFile.PlayMetaFile(hmetaFile);
+	DeleteMetaFile(hmetaFile);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -142,20 +158,44 @@ void CDrawPictureView::OnLButtonUp(UINT nFlags, CPoint point)
 	dc.SelectObject(&pen);
 	CBrush *pBrush=CBrush::FromHandle((HBRUSH)GetStockObject(NULL_BRUSH));
 	dc.SelectObject(pBrush);
+	m_dcMetaFile.SelectObject(pBrush);
+	m_dcMetaFile.SelectObject(&pen);
+	/*if (m_dcCompatible.m_hDC==NULL)
+	{
+		m_dcCompatible.CreateCompatibleDC(&dc);
+		CRect rect;
+		GetClientRect(&rect);
+		CBitmap bitmap;
+		bitmap.CreateCompatibleBitmap(&dc,rect.Width(),rect.Height());
+		m_dcCompatible.SelectObject(&bitmap);
+		m_dcCompatible.BitBlt(0,0,rect.Width(),rect.Height(),&dc,0,0,SRCCOPY);
+		m_dcCompatible.SelectObject(pBrush);
+		m_dcCompatible.SelectObject(&pen);
+	}*/
 	switch(m_DrawType)
 	{
 	case 0:
 		dc.SetPixel(point,m_clr);
+		//m_dcCompatible.SetPixel(point,m_clr);
+		m_dcMetaFile.SetPixel(point,m_clr);
 		break;
 	case 1:
 		dc.MoveTo(m_ptOrigin);
 		dc.LineTo(point);
+		//m_dcCompatible.MoveTo(m_ptOrigin);
+		//m_dcCompatible.LineTo(point);
+		m_dcMetaFile.MoveTo(m_ptOrigin);
+		m_dcMetaFile.LineTo(point);
 		break;
 	case 2:
 		dc.Rectangle(CRect(m_ptOrigin,point));
+		//m_dcCompatible.Rectangle(CRect(m_ptOrigin,point));
+		m_dcMetaFile.Rectangle(CRect(m_ptOrigin,point));
 		break;
 	case 3:
 		dc.Ellipse(CRect(m_ptOrigin,point));
+		//m_dcCompatible.Ellipse(CRect(m_ptOrigin,point));
+		m_dcMetaFile.Ellipse(CRect(m_ptOrigin,point));
 		break;
 	}
 	m_bDraw=0;
@@ -292,4 +332,34 @@ BOOL CDrawPictureView::OnEraseBkgnd(CDC* pDC)
 		0,0,bmp.bmWidth,bmp.bmHeight,SRCCOPY);
 	return TRUE;
 	return CView::OnEraseBkgnd(pDC);
+}
+
+void CDrawPictureView::OnPaint() 
+{
+	CPaintDC dc(this); // device context for painting
+	
+	// TODO: Add your message handler code here
+	OnPrepareDC(&dc);
+	OnDraw(&dc);
+	// Do not call CView::OnPaint() for painting messages
+}
+
+void CDrawPictureView::OnFileOpen() 
+{
+	// TODO: Add your command handler code here
+	HMETAFILE hmetaFile;
+	hmetaFile=GetMetaFile("meta.wmf");
+	m_dcMetaFile.PlayMetaFile(hmetaFile);
+	DeleteMetaFile(hmetaFile);
+	Invalidate();
+}
+
+void CDrawPictureView::OnFileSave() 
+{
+	// TODO: Add your command handler code here
+	HMETAFILE hmetaFile;
+	hmetaFile=m_dcMetaFile.Close();
+	CopyMetaFile(hmetaFile,"meta.wmf");
+	m_dcMetaFile.Create();
+	DeleteMetaFile(hmetaFile);
 }

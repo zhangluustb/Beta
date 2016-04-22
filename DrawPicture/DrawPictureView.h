@@ -60,9 +60,14 @@ protected:
 	afx_msg void OnMenuitemfont();
 	afx_msg void OnMenuitemcolor();
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+	afx_msg void OnPaint();
+	afx_msg void OnFileOpen();
+	afx_msg void OnFileSave();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:
+	CMetaFileDC m_dcMetaFile;	//widnows 图文原件
+	CDC m_dcCompatible; //用来保存画图轨迹
 	CFont m_font;
 	CString m_strFontName;
 	COLORREF m_clr;
