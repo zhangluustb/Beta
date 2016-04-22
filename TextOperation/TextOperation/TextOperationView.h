@@ -59,9 +59,14 @@ protected:
 	afx_msg void OnRegWrite();
 	afx_msg void OnRegRead();
 	afx_msg void OnRead();
+	afx_msg void OnDot();
+	afx_msg void OnCircle();
+	afx_msg void OnLine();
+	afx_msg void OnRect();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:
+	int m_nDrawType;
 	CBitmap bitmap;
 };
 

@@ -10,6 +10,10 @@
 #define IDM_READ                        32772
 #define IDM_REG_READ                    32774
 #define IDM_REG_WRITE                   32775
+#define IDM_DOT                         32776
+#define IDM_LINE                        32777
+#define IDM_RECT                        32778
+#define IDM_CIRCLE                      32779
 #define IDS_WEIXIN                      61446
 
 // Next default values for new objects
@@ -18,7 +22,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        131
-#define _APS_NEXT_COMMAND_VALUE         32776
+#define _APS_NEXT_COMMAND_VALUE         32780
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101
 #endif

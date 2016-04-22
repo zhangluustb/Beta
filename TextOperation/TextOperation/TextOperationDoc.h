@@ -18,7 +18,7 @@ protected: // create from serialization only
 
 // Attributes
 public:
-
+	CObArray m_obArray;
 // Operations
 public:
 
@@ -28,6 +28,7 @@ public:
 	public:
 	virtual BOOL OnNewDocument();
 	virtual void Serialize(CArchive& ar);
+	virtual void DeleteContents();
 	//}}AFX_VIRTUAL
 
 // Implementation

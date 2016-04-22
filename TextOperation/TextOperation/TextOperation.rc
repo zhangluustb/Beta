@@ -145,6 +145,13 @@ BEGIN
         MENUITEM "写入注册表",                  IDM_REG_WRITE
         MENUITEM "读取注册表",                  IDM_REG_READ
     END
+    POPUP "绘图"
+    BEGIN
+        MENUITEM "点",                          IDM_DOT
+        MENUITEM "直线",                        IDM_LINE
+        MENUITEM "矩形",                        IDM_RECT
+        MENUITEM "圆",                          IDM_CIRCLE
+    END
 END
 
 
@@ -259,7 +266,7 @@ END
 
 STRINGTABLE PRELOAD DISCARDABLE 
 BEGIN
-    IDR_MAINFRAME           "TextOperation\n\nTextOp\n\n\nTextOperation.Document\nTextOp Document"
+    IDR_MAINFRAME           "11\n22\n33\n44\n55\n66\n77"
 END
 
 STRINGTABLE PRELOAD DISCARDABLE 

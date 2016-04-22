@@ -5,7 +5,7 @@
 #include "TextOperation.h"
 
 #include "TextOperationDoc.h"
-
+#include "TextOperationView.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -44,7 +44,7 @@ BOOL CTextOperationDoc::OnNewDocument()
 
 	// TODO: add reinitialization code here
 	// (SDI documents will reuse this document)
-
+	SetTitle("http://www.baidu.org");
 	return TRUE;
 }
 
@@ -55,6 +55,8 @@ BOOL CTextOperationDoc::OnNewDocument()
 
 void CTextOperationDoc::Serialize(CArchive& ar)
 {
+	POSITION pos=GetFirstViewPosition();
+	CTextOperationView *pView=(CTextOperationView*)GetNextView(pos);
 	if (ar.IsStoring())
 	{
 		// TODO: add storing code here
@@ -63,6 +65,7 @@ void CTextOperationDoc::Serialize(CArchive& ar)
 	{
 		// TODO: add loading code here
 	}
+	m_obArray.Serialize(ar);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -82,3 +85,22 @@ void CTextOperationDoc::Dump(CDumpContext& dc) const
 
 /////////////////////////////////////////////////////////////////////////////
 // CTextOperationDoc commands
+
+void CTextOperationDoc::DeleteContents() 
+{
+	// TODO: Add your specialized code here and/or call the base class
+	int nCount;
+	nCount=m_obArray.GetSize();
+	/*for(int i=0;i<nCount;i++)
+	{
+		delete m_obArray.GetAt(i);
+		//m_obArray.RemoveAt(i);
+	}
+	m_obArray.RemoveAll();*/
+	while(nCount--)
+	{
+		delete m_obArray.GetAt(nCount);
+		m_obArray.RemoveAt(nCount);
+	}
+	CDocument::DeleteContents();
+}

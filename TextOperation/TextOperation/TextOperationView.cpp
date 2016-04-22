@@ -6,7 +6,8 @@
 
 #include "TextOperationDoc.h"
 #include "TextOperationView.h"
-
+#include "Graph.h"
+#include "TextOperationDoc.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -29,6 +30,10 @@ BEGIN_MESSAGE_MAP(CTextOperationView, CView)
 	ON_COMMAND(IDM_REG_WRITE, OnRegWrite)
 	ON_COMMAND(IDM_REG_READ, OnRegRead)
 	ON_COMMAND(IDM_READ, OnRead)
+	ON_COMMAND(IDM_DOT, OnDot)
+	ON_COMMAND(IDM_CIRCLE, OnCircle)
+	ON_COMMAND(IDM_LINE, OnLine)
+	ON_COMMAND(IDM_RECT, OnRect)
 	//}}AFX_MSG_MAP
 	// Standard printing commands
 	ON_COMMAND(ID_FILE_PRINT, CView::OnFilePrint)
@@ -45,6 +50,7 @@ CTextOperationView::CTextOperationView()
 	m_strLine="";
 	m_ptOrigin=0;
 	m_nWidth=0;
+	m_nDrawType=-1;
 }
 
 CTextOperationView::~CTextOperationView()
@@ -86,6 +92,15 @@ void CTextOperationView::OnDraw(CDC* pDC)
 		pDC->LineTo(300,i);
 		pDC->MoveTo(i,0);
 		pDC->LineTo(i,300);
+	}
+	//////////////////////////////////////////////////////////////////////////
+	int nCount;
+	//nCount=m_obArray.GetSize();
+	nCount=pDoc->m_obArray.GetSize();
+	for(int ii=0;ii<nCount;ii++)
+	{
+		//((CGraph*)m_obArray.GetAt(ii))->Draw(pDC);
+		((CGraph*)pDoc->m_obArray.GetAt(ii))->Draw(pDC);
 	}
 }
 
@@ -165,7 +180,30 @@ void CTextOperationView::OnLButtonDown(UINT nFlags, CPoint point)
 void CTextOperationView::OnLButtonUp(UINT nFlags, CPoint point) 
 {
 	// TODO: Add your message handler code here and/or call default
+	CClientDC dc(this);
+	CBrush *pBrush=CBrush::FromHandle((HBRUSH)GetStockObject(NULL_BRUSH));
+	dc.SelectObject(pBrush);
 	
+	switch(m_nDrawType)
+	{
+	case 1:
+		dc.SetPixel(point,RGB(0,0,0));
+		break;
+	case 2:
+		dc.MoveTo(m_ptOrigin);
+		dc.LineTo(point);
+		break;
+	case 3:
+		dc.Rectangle(CRect(m_ptOrigin,point));
+		break;
+	case 4:
+		dc.Ellipse(CRect(m_ptOrigin,point));
+		break;
+	}
+	CGraph *pGraph=new CGraph(m_nDrawType,m_ptOrigin,point);
+	CTextOperationDoc *pDoc=GetDocument();
+	pDoc->m_obArray.Add(pGraph);
+	//pDoc->m_obArray.Add(pGraph);
 	CView::OnLButtonUp(nFlags, point);
 }
 
@@ -244,7 +282,7 @@ void CTextOperationView::OnTimer(UINT nIDEvent)
 void CTextOperationView::OnWrite() 
 {
 	// TODO: Add your command handler code here
-	CFileDialog fileDlg(FALSE);
+	/*CFileDialog fileDlg(FALSE);
 	fileDlg.m_ofn.lpstrTitle="我的文件保存对话框";
 	fileDlg.m_ofn.lpstrFilter="Text Files(*.txt)\0*.txt\0All Files(*.*)\0*.*\0\0";
 	fileDlg.m_ofn.lpstrDefExt="txt";
@@ -253,7 +291,20 @@ void CTextOperationView::OnWrite()
 		CFile file(fileDlg.GetFileName(),CFile::modeCreate | CFile::modeWrite);
 		file.Write("http://www.sunxin.org",strlen("http://www.sunxin.org"));
 		file.Close();
-	}
+	}*/
+	//////////////////////////////////////////////////////////////////////////
+	//CArchive 对象提供了一个类型安全缓冲机制，用于将可序列化对象写入 CFile 对象或从中读取可序列化对象。
+	//通常，CFile 对象表示磁盘文件；但是，它也可以是表示“剪贴板”的内存文件（CSharedFile 对象）
+	//////////////////////////////////////////////////////////////////////////
+	
+	CFile file("1.txt",CFile::modeCreate | CFile::modeWrite);
+	CArchive ar(&file,CArchive::store);
+	int i=4;
+	char ch='a';
+	float f=1.3f;
+	CString str("http://www.sunxin.org");
+	ar<<i<<ch<<f<<str;
+
 }
 
 void CTextOperationView::OnRegWrite() 
@@ -284,7 +335,7 @@ void CTextOperationView::OnRegRead()
 void CTextOperationView::OnRead() 
 {
 	// TODO: Add your command handler code here
-	CFileDialog fileDlg(TRUE);
+	/*CFileDialog fileDlg(TRUE);
 	fileDlg.m_ofn.lpstrTitle="我的文件打开对话框";
 	fileDlg.m_ofn.lpstrFilter="Text Files(*.txt)\0*.txt\0All Files(*.*)\0*.*\0\0";
 	
@@ -299,5 +350,39 @@ void CTextOperationView::OnRead()
 		file.Read(pBuf,dwFileLen);
 		file.Close();
 		MessageBox(pBuf);
-	}
+	}*/
+	CFile file("1.txt",CFile::modeRead);
+	CArchive ar(&file,CArchive::load);
+	int i;
+	char ch;
+	float f;
+	CString str;
+	CString strResult;
+	ar>>i>>ch>>f>>str;
+	strResult.Format("%d,%c,%f,%s",i,ch,f,str);
+	MessageBox(strResult);
+}
+
+void CTextOperationView::OnDot() 
+{
+	// TODO: Add your command handler code here
+	m_nDrawType=1;
+}
+
+void CTextOperationView::OnCircle() 
+{
+	// TODO: Add your command handler code here
+	m_nDrawType=4;
+}
+
+void CTextOperationView::OnLine() 
+{
+	// TODO: Add your command handler code here
+	m_nDrawType=2;
+}
+
+void CTextOperationView::OnRect() 
+{
+	// TODO: Add your command handler code here
+	m_nDrawType=3;
 }
