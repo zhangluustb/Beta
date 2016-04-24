@@ -1,0 +1,71 @@
+第18课 ActiveX编程（下面X均为ActiveX简称）
+1.在VB中调用X控件，添加方法 project->Add components。另外可以用Object Browser来查看控件
+2.在VC中创建X控件
+  1.新建一个X工程名为Clock，注意一个文件中可以包含多个控件。
+  2.保持缺省设置，完成。注意它生成的三个类，以及相关的接口。
+  3.运行它。选择TSTCON32.exe作为容器。
+  4.选择Insert Control,此时我们可以看到，它画了一个椭圆。也可以在VB中测试。
+  5.删除注册信息。用regsvr32 /u +文件名。也可以在菜单选择反注册命令。
+  6.重写代码。在CClockCtrl::OnDraw()中画了一个椭圆，此时我们在其中得到系统时间，并显示它。为此我们在OnCreate()设置了一个定时器，每隔一定时间发出一个Invalidate()消息，使窗口重绘。
+  7.如何改变控件的背景色和前景色？ClassWizard->AutoMation->Add Property->BackColor,还需要在OnDraw()中加上相应的代码
+   CBrush brush(TranslateColor(GetBackColor()));
+pdc->FillRect(rcBounds, &brush);
+pdc->SetBkMode(TRANSPARENT);
+pdc->SetTextColor(TranslateColor(GetForeColor()));
+  8.增加属性页。在
+  BEGIN_PROPPAGEIDS(CClockCtrl, 2)此时数目也得改成相应的数目
+PROPPAGEID(CClockPropPage::guid)
+PROPPAGEID(CLSID_CColorPropPage)
+  END_PROPPAGEIDS(CClockCtrl)  OK~
+  9.增加自定义属性：ClassWizard->AutoMation->Add Property加上一个变量m_interval,类型为short,对应外部变量为Interval。在CClockCtrl中增加OnIntervalChanged方法。添加如下代码：
+   if(m_interval<0 || m_interval>6000)
+{
+  m_interval=1000;
+}
+else
+{
+  m_interval=m_interval/1000*1000;
+  KillTimer(1);
+  SetTimer(1,m_interval,NULL);
+  BoundPropertyChanged(0x1);
+}
+   10.测试：Control->Invoke Methods
+   11.将时间间隔加到属性页中，在资源视图中加入一文本框和编辑框。为EditBox关联成员变量，加入属性interval。
+   12.增加方法：ClassWizard->AutoMation->Add Method->Hello加入代码 OK！在VB中可以调用此方法！
+   void CClockCtrl::Hello() 
+{
+// TOD Add your dispatch handler code here
+MessageBox("Hello world!");
+}
+   13.增加事件:ClassWizard->AutoMation->Add Events->Click
+   14.增加自定义事件：ClassWizard->AutoMation->Add Events->NewMinute
+      在新的一分钟到达时发出这个通知，在OnDraw()中写代码：
+       CTime time=CTime::GetCurrentTime();
+if(0==time.GetSecond())
+{
+  FireNewMinute();
+}
+   15.让Interval属性具有持久性。在CClockCtrl::DoPropExchange()中调用PX_short()方法，OK！
+    PX_Short(pPX,"Interval",m_interval,1000);
+   16.让Property Page和Property属性中的interval保持一致的方法：在OnIntervalChanged()中调用BoundPropertyChanged(0x1);
+   17.希望控件在设计时间内不走动的方法：在OnTimer()中， if(AmbientUserMode())InvalidateControl();巧妙！
+3.在VC中调用X控件
+  1.新建ClockTest对话框应用程序
+  2.点击右键->插入X控件->时钟控件
+  3.Project->Add Component会生成CClock类。
+  4.在CCLockTestDlg中增加CClock类的成员变量m_clock，然后可以动态创建一个这样的东东！
+  5.试验Click(),NewMinute(),SetBkColor(),SetForeColor()方法和属性
+  6.如何为动态创建的控件做事件响应呢？首先你得知道它的ID号，然后参考非动态的控件事件代码，呵。
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+添加控件时，assert failed 问题出现。-0
+dipid 事件编号 -1
+动态创建的控件的事件编写 -1
+
+
+
+
+
+
+
